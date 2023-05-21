@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input id="text" type="number" />
+        <button onclick="arrMrg2()" id="btn">Click me</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let input = document.getElementById("text");
+    let btn = document.getElementById("btn");
+
+    let arr1 = [1, 5, 2, 77, 33, 56];
+
+    // Traverse
+    const arrTrv = () => {
+        arr1.forEach((el) => {
+            console.warn(el);
+        })
+    }
+
+    // Insertion
+    let el = 444;
+    let position = 3;
+    const arrIns = () => {
+        for (let i = arr1.length; i >= position; i--) {
+            if (i == position) {
+                arr1[i] = el;
+            }
+            else {
+                arr1[i] = arr1[i - 1];
+            }
+        }
+        console.warn(arr1);
+    }
+
+    // Deletion
+    position = 3;
+    const arrDel = () => {
+        for (let i = position; i < arr1.length - 1; i++) {
+            arr1[i] = arr1[i + 1];
+        }
+        arr1.length -= 1;
+        console.warn(arr1);
+    }
+
+    // Search (linear)
+    el = 33
+    const arrSch = () => {
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] == el) {
+                console.warn(`${el} found at index ${i}`);
+                break;
+            }
+        }
+    }
+
+    // Merge 2 arrays 1.
+    let a = [3, 2, 6, 44, 677];
+    let b = [2, 44, 11];
+    let c = [];
+    const arrMrg1 = () => {
+        for (let i = 0; i < a.length; i++) {
+            c[i] = a[i];
+        }
+        for (let i = 0; i < b.length; i++) {
+            c[a.length + i] = b[i];
+        }
+        console.warn(c);
+    }
+
+    // Merge 2 arrays 2.
+    a = [3, 23, 62, 442, 677];
+    b = [2, 11, 66];
+    c = [];
+    let i = 0; j = 0; k = 0;
+    const arrMrg2 = () => {
+        while (i < a.length && j < b.length) {
+            if (a[i] < b[j]) {
+                c[k] = a[i];
+                i++;
+            }
+            else {
+                c[k] = b[j];
+                j++;
+            }
+            k++
+        }
+        let winner = a.length - i == 0 ? b : a;
+        let index = winner == a ? i : j;
+        while (index < winner.length) {
+            c[k] = winner[index];
+            k++
+            index++;
+        }
+    console.warn(c);
+    }
+
+
+</script>
